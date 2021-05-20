@@ -1,6 +1,8 @@
 package com.example.demoEmployee.service;
 
 import com.example.demoEmployee.model.Employee;
+import com.example.demoEmployee.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -14,10 +16,20 @@ import java.util.stream.Collectors;
 @Service
 public class EmployeeService {
 
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
     private static Map<Long, Employee> employeeMockDB = new HashMap();
 
     public Employee findEmployee(long id) {
-        Employee employee = employeeMockDB.get(id);
+//        Employee employee = employeeMockDB.get(id);
+//        if(employee == null) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Employee Not found");
+//        }
+//        return employee;
+
+        Employee employee = employeeRepository.getEmployee(id);
         if(employee == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Employee Not found");
         }

@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NoArgsConstructor
 public class Employee {
 
-    private long id;
+    private long id = -1;
     private String name;
     private String dept;
     private double salary;
