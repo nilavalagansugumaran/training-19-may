@@ -2,3 +2,5 @@ server:
   port: 9002
   error:
     include-exception: true
+enable.bean1: false
+enable.bean2: true
