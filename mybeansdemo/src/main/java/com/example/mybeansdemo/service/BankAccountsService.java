@@ -1,4 +1,4 @@
-package com.example.mybeansdemo;
+package com.example.mybeansdemo.service;
 
 public interface BankAccountsService {
 

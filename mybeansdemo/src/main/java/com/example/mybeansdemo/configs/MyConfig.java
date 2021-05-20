@@ -1,5 +1,8 @@
-package com.example.mybeansdemo;
+package com.example.mybeansdemo.configs;
 
+import com.example.mybeansdemo.service.BankAccountsService;
+import com.example.mybeansdemo.service.CurrentAccountService;
+import com.example.mybeansdemo.service.ISAAccountService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
