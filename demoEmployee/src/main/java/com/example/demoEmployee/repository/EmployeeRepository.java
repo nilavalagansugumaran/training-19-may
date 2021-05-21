@@ -64,13 +64,17 @@ public class EmployeeRepository {
 
     @PostConstruct
     public void setup(){
-        jdbcTemplate.execute("create table EMPLOYEES(" +
-                "id int auto_increment, " +
-                "name varchar(50), " +
-                "salary double, " +
-                "dept varchar(50), " +
-                "primary key (id) )");
+        /**
+         * h2 create table
+         */
+//        jdbcTemplate.execute("create table EMPLOYEES(" +
+//                "id int auto_increment, " +
+//                "name varchar(50), " +
+//                "salary double, " +
+//                "dept varchar(50), " +
+//                "primary key (id) )");
 
+        jdbcTemplate.execute("create table EMPLOYEES(id INT IDENTITY(1,1) PRIMARY KEY, name varchar(50), salary decimal(15,2), dept varchar(50))");
         jdbcTemplate.update("insert into EMPLOYEES (name, salary, dept) " +
                         "values (?, ?, ?)",
                 new Object[]{"James", 21000, "London"});
