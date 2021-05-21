@@ -1,0 +1,42 @@
+{
+  "groups": [
+    {
+      "name": "contact",
+      "type": "demo.additionaltechniques.MyBean2b",
+      "sourceType": "demo.additionaltechniques.MyBean2b"
+    },
+    {
+      "name": "server",
+      "type": "demo.additionaltechniques.MyBean4",
+      "sourceType": "demo.additionaltechniques.MyBean4"
+    }
+  ],
+  "properties": [
+    {
+      "name": "contact.email",
+      "type": "java.lang.String",
+      "sourceType": "demo.additionaltechniques.MyBean2b"
+    },
+    {
+      "name": "contact.tel",
+      "type": "java.lang.String",
+      "sourceType": "demo.additionaltechniques.MyBean2b"
+    },
+    {
+      "name": "contact.web",
+      "type": "java.lang.String",
+      "sourceType": "demo.additionaltechniques.MyBean2b"
+    },
+    {
+      "name": "server.address",
+      "type": "java.lang.String",
+      "sourceType": "demo.additionaltechniques.MyBean4"
+    },
+    {
+      "name": "server.port",
+      "type": "java.lang.String",
+      "sourceType": "demo.additionaltechniques.MyBean4"
+    }
+  ],
+  "hints": []
+}

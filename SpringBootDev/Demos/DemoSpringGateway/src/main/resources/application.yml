@@ -1,0 +1,39 @@
+
+health.config.enabled: false
+
+info:
+  component: Gateway Server
+
+rs.auto-configure: false
+
+ribbon:
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+  OkToRetryOnAllOperations: true
+  ServerListRefreshInterval: 5000
+  ConnectTimeout: 2000
+  ReadTimeout: 5000
+  IsSecure: false
+
+server.port: 8887
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 10000
+  
+spring:
+  cloud:
+    gateway:
+      httpclient:
+        connectTimeout: 1500
+        responseTimeout: 5000
+        pool:
+          #type: fixed # default is elastic
+          #maxConnections: 50 # default is 16
+          acquireTimeout: 2000
+      default-filters:
+        - AddRequestHeader=some-header,value
+      routes:
+      - id: greeting
+        uri: http://localhost:9011/
+        predicates:
+        - Path=/greet/**
+  
