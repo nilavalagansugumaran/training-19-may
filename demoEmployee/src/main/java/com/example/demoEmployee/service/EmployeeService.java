@@ -16,20 +16,10 @@ import java.util.stream.Collectors;
 @Service
 public class EmployeeService {
 
-
-    @Autowired
-    private EmployeeRepository employeeRepository;
-
     private static Map<Long, Employee> employeeMockDB = new HashMap();
 
     public Employee findEmployee(long id) {
-//        Employee employee = employeeMockDB.get(id);
-//        if(employee == null) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Employee Not found");
-//        }
-//        return employee;
-
-        Employee employee = employeeRepository.getEmployee(id);
+        Employee employee = employeeMockDB.get(id);
         if(employee == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Employee Not found");
         }

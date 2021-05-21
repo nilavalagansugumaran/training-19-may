@@ -38,6 +38,18 @@ public class EmployeeRepository {
         return jdbcTemplate.queryForObject(sql, new EmployeeRowMapper(), employee.getName());
     }
 
+    @Transactional
+    public void updateEmployee(Employee employee){
+        String sql = "update EMPLOYEES set salary =? where id =?";
+        jdbcTemplate.update(sql,
+                new Object[]{employee.getSalary(), employee.getId()});
+    }
+
+    @Transactional
+    public void deleteEmployee(long id){
+        String sql = "delete from EMPLOYEES where id =?";
+        jdbcTemplate.update(sql, id);
+    }
 
     public static class EmployeeRowMapper implements RowMapper<Employee> {
         @Override

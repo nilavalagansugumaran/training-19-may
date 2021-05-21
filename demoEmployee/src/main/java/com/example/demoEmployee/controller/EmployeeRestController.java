@@ -2,6 +2,7 @@ package com.example.demoEmployee.controller;
 
 import com.example.demoEmployee.model.Employee;
 import com.example.demoEmployee.repository.EmployeeRepository;
+import com.example.demoEmployee.service.EmployeeJdbcService;
 import com.example.demoEmployee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,14 @@ import java.util.List;
 //@RequestMapping(path ="/employee")
 public class EmployeeRestController {
 
+    /**
+     * Uncomment if you want to use mock DB
+     */
+//    @Autowired
+//    private EmployeeService employeeService;
+
     @Autowired
-    private EmployeeService employeeService;
+    private EmployeeJdbcService employeeService;
 
     @GetMapping(path = "/employees/{id}", headers = {"Accept=application/json, application/xml","Content-Type=application/json, application/xml"})
     public Employee getEmployee(@PathVariable("id") long id){
