@@ -1,5 +1,6 @@
 package com.example.demoValidation.model;
 
+import com.example.demoValidation.annotation.ValidPhoneNumber;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.lang.NonNull;
@@ -24,4 +25,7 @@ public class Order {
     @Min(value = 100, message = "order value can not be < 100 ")
     @Max(value = 1000, message = "order value can not be > 1000" )
     private Double price;
+
+    @ValidPhoneNumber(message = "phone number is invalid")
+    private String phone;
 }
