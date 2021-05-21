@@ -7,6 +7,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.sql.DataSource;
+
 
 @Configuration
 @EnableWebSecurity
@@ -29,18 +33,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     // Either Autowired - configureGlobal or Override - configure
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        // Define auth implementation
-        auth.inMemoryAuthentication()
-                .withUser("nila").password("{noop}password").roles("USER")
-                .and()
-                .withUser("admin").password("{noop}admin").roles("USER", "ADMIN");
-    }
-//
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//
-//    }	 // Define auth implementation   }
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        // Define auth implementation
+//        auth.inMemoryAuthentication()
+//                .withUser("nila").password("{noop}password").roles("USER")
+//                .and()
+//                .withUser("admin").password("{noop}admin").roles("USER", "ADMIN");
+//    }
 
+    @Autowired private DataSource dataSource;
+
+   @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.jdbcAuthentication().dataSource(dataSource)
+                .usersByUsernameQuery("select username, password, enabled"
+                        + " from users where username=?")
+                .authoritiesByUsernameQuery("select username, authority "
+                        + "from authorities where username=?")
+                .passwordEncoder(new BCryptPasswordEncoder());
+    }
 }
