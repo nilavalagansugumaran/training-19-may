@@ -37,13 +37,13 @@ public class CreateUsers {
                 "values(?,?,?)", new Object[]{"admin",encodePassword("admin"),true});
 
         jdbcTemplate.update("insert into authorities(username,authority)" +
-                " values(?,?)", new Object[]{"admin", "ADMIN"});
+                " values(?,?)", new Object[]{"admin", "ROLE_ADMIN"});
 
         jdbcTemplate.update("insert into users(username,password,enabled) " +
                 "values(?,?,?)", new Object[]{"nila",encodePassword("password"),true});
 
         jdbcTemplate.update("insert into authorities(username,authority)" +
-                " values(?,?)", new Object[]{"nila", "USER"});
+                " values(?,?)", new Object[]{"nila", "ROLE_USER"});
     }
 
     private String encodePassword(String password){
